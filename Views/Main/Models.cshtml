@@ -1,0 +1,57 @@
+@{Layout = "/Views/Shared/Layout.cshtml";}
+@model List<Model>
+
+
+<form method='post' action='/findModel/'>
+	Model: <input name='code' type='text' value=''>
+	<input name='run' value='Find' type='submit'>
+</form>
+
+<hr class="hr-shadow">
+
+<center>
+	@if(Model.Count > 0)
+	{
+		<table class='table'>
+			<thead><tr><th>#</th><th>Model</th>
+				<th>Spicification positions</th>
+				<th>Spicification file</th>
+				<th>Documents count</th>
+				<th>Documents</th>
+				<th>Update time</th>			
+				<th>Actions</th>
+			</tr></thead>
+			<tbody>
+			@foreach((int index, Model item) in Model.Index())
+			{
+				<tr>
+					<td>@(index+1)</td>
+					<td>@item.code</td>
+					<td>@item.specifications</td>
+					<td>
+						@if(item.xlsxExists)
+						{
+							<a target='_blank' href='/files/@(item.code.Replace("/", "_"))/specifications.xlsx'>specifications.xlsx</a> @:(local storage)
+						} else
+						{
+							<a target='_blank' href='@(ViewBag.onlineHost)/bsh/get-model-xlsx/@(item.code.Replace("/", "_"))'>specifications.xlsx</a>
+						}
+					</td>
+					<td>@item.documents</td>
+					<td>
+						@if(item.zipExists)
+						{
+							<a target='_blank' href='/files/@(item.code.Replace("/", "_")).zip'>download archive</a> @:(local storage)
+						} else
+						{
+							<a target='_blank' href='@(ViewBag.onlineHost)/bsh/get-model-zip/@(item.code.Replace("/", "_")).zip'>download archive</a>
+						}
+					</td>
+					<td>@item.date</td>
+					<td><a href='@(ViewBag.onlineHost)/deleteModel/id/@(item.id)'><img class='icon delete'/></a></td>
+				</tr>
+			}
+			</tbody>
+		</table>
+	}
+</center>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>BSH - parts & models</title>
+		<link rel="stylesheet" href="/styles/main.css">
+	</head>
+<body>
+	<p>Date: @DateTime.Now.ToLongDateString() Time: @DateTime.Now.ToShortTimeString()</p>
+	<hr class="hr-shadow">
+		<a href="/">Parts</a> |
+		<a href="/models/">Models</a> |
+		<a href="/videos/">Videos</a>
+	<hr class="hr-shadow">
+	@RenderBody()
+</body></html>
