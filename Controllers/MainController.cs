@@ -81,9 +81,25 @@ public class MainController: Controller
 				if (p is null)
 				{
 					bshService.Login();
+					/*JArray specItems  = bshService.onlineModelSpec(code);
+					int countSpecifications = specItems.Count;
 					
-					//var specItems = bshService.onlineModelSpec(code);
-										
+					if (countSpecifications > 0) 
+					{
+						bshService.MakeModelXLSX(code, specItems);
+					}*/
+
+					var (documents, videos) = bshService.onlineModelDocuments(code);
+					Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(documents));
+					Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(videos));
+					
+					if (documents.Count > 0)
+					{
+						//bshService.MakeModelDocumentsArchive(code, documents);
+					}
+					
+					int newVideosCount = bshService.AddVideos(videos, code);
+					Console.WriteLine(newVideosCount);
 				} else
 				{
 					Console.WriteLine("code already exists");
@@ -91,6 +107,6 @@ public class MainController: Controller
 			}
 		}
 			
-		return Redirect("/index/");
+		return Redirect("/models/");
 	}
 }

@@ -63,3 +63,4 @@ C:\dotnet\bsh\bin\Debug\net10.0\ExcelNumberFormat.dll
 C:\dotnet\bsh\bin\Debug\net10.0\RBush.dll
 C:\dotnet\bsh\bin\Debug\net10.0\SixLabors.Fonts.dll
 C:\dotnet\bsh\bin\Debug\net10.0\System.IO.Packaging.dll
+C:\dotnet\bsh\obj\Debug\net10.0\bsh.sourcelink.json
